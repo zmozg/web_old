@@ -1,10 +1,13 @@
 git config --global user.name "zmozg"
 git config --global user.email "zmozg20@gmail.com"
 
-
+# nginx conf
 sudo ln -sf /home/box/web/etc/nginx.conf /etc/nginx/sites-enabled/default
 sudo /etc/init.d/nginx restart
-source web/myvenv/bin/activate
-gunicorn -b 0.0.0.0:8080 --pythonpath /home/box/web hello:Wsgi_application &
-gunicorn -b 0.0.0.0:8000 --pythonpath /home/box/web/ask ask.wsgi.application &
+
+# gunicorn_ask
+sudo ln -sf /home/box/web/etc/gunicorn_ask.conf /etc/gunicorn.d/ask
+sudo /etc/init.d/gunicorn restart
+
+
 
